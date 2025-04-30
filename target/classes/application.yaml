@@ -4,4 +4,4 @@ server:
 spring:
   data:
     mongodb:
-      uri: mongodb+srv://tiagofs:<db_password>@cluster0.1ub0wol.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0
+      uri: mongodb+srv://tiagofs:fire-alarm-application@cluster0.1ub0wol.mongodb.net/fire-db?retryWrites=true&w=majority&appName=Cluster0
