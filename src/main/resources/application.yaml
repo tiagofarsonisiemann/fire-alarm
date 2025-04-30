@@ -1,0 +1,7 @@
+server:
+  port: 8081
+
+spring:
+  data:
+    mongodb:
+      uri: mongodb+srv://tiagofs:<db_password>@cluster0.1ub0wol.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0
