@@ -15,10 +15,13 @@ public class FireSensorController {
 
     @GetMapping
     public List<FireSensor> listSensors() { return fireService.getSensors(); }
+
     @GetMapping("/{id}")
     public FireSensor getSensor(@PathVariable String id) { return fireService.getSensorById(id).orElseThrow(); }
+
     @PostMapping
     public FireSensor createSensor(@RequestBody FireSensor sensor) { return fireService.addSensor(sensor); }
+
     @PutMapping("/{id}/activate")
     public FireSensor activateSensor(@PathVariable String id, @RequestParam(defaultValue = "true") boolean active) {
         return fireService.activateSensor(id, active);
