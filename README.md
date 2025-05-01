@@ -1,6 +1,6 @@
 Fire Service – Monitoramento Inteligente de Incêndios
 
-*O que é isso?*
+O que é isso?
 
 Este é um sistema web que serve como exemplo de aplicação para cidades inteligentes: você poderá cadastrar sensores de incêndio, registrar alertas de incêndio, consultar tudo por interface gráfica, com o banco de dados na nuvem (MongoDB Atlas).
 
