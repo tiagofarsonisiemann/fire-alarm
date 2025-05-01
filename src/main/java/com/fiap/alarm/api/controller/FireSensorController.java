@@ -8,19 +8,19 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/fire/sensors")
+@RequestMapping("/fire/sensor")
 public class FireSensorController {
     private final FireService fireService;
     public FireSensorController(FireService fireService) { this.fireService = fireService; }
+
+    @PostMapping
+    public FireSensor createSensor(@RequestBody FireSensor sensor) { return fireService.addSensor(sensor); }
 
     @GetMapping
     public List<FireSensor> listSensors() { return fireService.getSensors(); }
 
     @GetMapping("/{id}")
     public FireSensor getSensor(@PathVariable String id) { return fireService.getSensorById(id).orElseThrow(); }
-
-    @PostMapping
-    public FireSensor createSensor(@RequestBody FireSensor sensor) { return fireService.addSensor(sensor); }
 
     @PutMapping("/{id}/activate")
     public FireSensor activateSensor(@PathVariable String id, @RequestParam(defaultValue = "true") boolean active) {
