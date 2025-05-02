@@ -31,7 +31,7 @@ jobs:
             mvn clean package -DskipTests
           fi
 
-      - name: List target folder
+      - name: List JARs in target folder
         run: ls -lh target
 
       - name: Set up Docker Buildx
