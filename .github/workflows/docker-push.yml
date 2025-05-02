@@ -6,7 +6,7 @@ on:
       - main
 
 env:
-  DOCKER_IMAGE: tiagofarsonisiemann/fire-alarm-app:latest
+  DOCKER_IMAGE: tiagofarsonisiemann/fire-alarm-app:v1
 
 jobs:
   build_and_push:
@@ -31,7 +31,7 @@ jobs:
           password: ${{ secrets.DOCKERHUB_TOKEN }}
 
       - name: Build Docker image
-        run: docker build -t ${{ env.DOCKER_IMAGE }} .
+        run: docker build --no-cache -t ${{ env.DOCKER_IMAGE }} .
 
       - name: Push Docker image
         run: docker push ${{ env.DOCKER_IMAGE }}
