@@ -31,8 +31,13 @@ jobs:
             mvn clean package -DskipTests
           fi
 
-      - name: List JARs in target folder
-        run: ls -lh target
+      - name: List target folder
+        run: ls -lh target || echo "target folder not found"
+
+      - name: Show Maven build logs (in case of error)
+        if: failure()
+        run: |
+          cat $(find . -name build.log || echo "No build.log")
 
       - name: Set up Docker Buildx
         uses: docker/setup-buildx-action@v3
@@ -48,6 +53,7 @@ jobs:
         with:
           push: true
           no-cache: true
+          context: .
           tags: |
             ${{ secrets.DOCKERHUB_USERNAME }}/fire-alarm-app:${{ github.sha }}
             ${{ secrets.DOCKERHUB_USERNAME }}/fire-alarm-app:latest
