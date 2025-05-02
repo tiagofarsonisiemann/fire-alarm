@@ -1,6 +1,6 @@
 # Docs for the Azure Web Apps Deploy action: https://github.com/Azure/webapps-deploy
 # More GitHub Actions for Azure: https://github.com/Azure/actions
-# test
+
 name: Build and deploy container app to Azure Web App - fire-alarm-app
 
 on:
@@ -23,14 +23,14 @@ jobs:
       uses: docker/login-action@v2
       with:
         registry: https://index.docker.io/v1/
-        username: ${{ secrets.AzureAppService_ContainerUsername_8be3f853f50b42fa91bb18bd766a5db9 }}
-        password: ${{ secrets.AzureAppService_ContainerPassword_76dfde0955064856aba5e113ee91a4f0 }}
+        username: ${{ secrets.DOCKERHUB_USERNAME }}
+        password: ${{ secrets.DOCKERHUB_TOKEN }}
 
     - name: Build and push container image to registry
       uses: docker/build-push-action@v3
       with:
         push: true
-        tags: index.docker.io/${{ secrets.AzureAppService_ContainerUsername_8be3f853f50b42fa91bb18bd766a5db9 }}/tiagofarsonisiemann/fire-alarm-app:${{ github.sha }}
+        tags: index.docker.io/${{ secrets.DOCKERHUB_USERNAME }}/tiagofarsonisiemann/fire-alarm-app:${{ github.sha }}
         file: ./Dockerfile
 
   deploy:
@@ -48,4 +48,4 @@ jobs:
         app-name: 'fire-alarm-app'
         slot-name: 'production'
         publish-profile: ${{ secrets.AzureAppService_PublishProfile_413cd7f3f97b400cb27a8fd88d6b7701 }}
-        images: 'index.docker.io/${{ secrets.AzureAppService_ContainerUsername_8be3f853f50b42fa91bb18bd766a5db9 }}/tiagofarsonisiemann/fire-alarm-app:${{ github.sha }}'
+        images: 'index.docker.io/${{ secrets.DOCKERHUB_USERNAME }}/tiagofarsonisiemann/fire-alarm-app:${{ github.sha }}'
