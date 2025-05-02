@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/fire/sensor")
+@RequestMapping("/fire/sensors")
 public class FireSensorController {
     private final FireService fireService;
     public FireSensorController(FireService fireService) { this.fireService = fireService; }
