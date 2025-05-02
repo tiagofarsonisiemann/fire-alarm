@@ -6,7 +6,7 @@ on:
       - main
 
 env:
-  DOCKER_IMAGE: tiagofarsonisiemann/fire-alarm-app:v1
+  DOCKER_IMAGE: tiagofarsonisiemann/fire-alarm-app:latest
 
 jobs:
   build_and_push:
