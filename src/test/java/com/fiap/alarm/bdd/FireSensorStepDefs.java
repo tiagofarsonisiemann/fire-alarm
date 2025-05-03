@@ -38,7 +38,7 @@ public class FireSensorStepDefs {
         }
     }
 
-    @Given("criei um sensor (sensor) com location {string}")
+    @Given("criei um sensor $sensor$ com location {string}")
     public void crieiSensorSensor(String location) {
         postSensor(location);
     }
@@ -73,6 +73,7 @@ public class FireSensorStepDefs {
 
     @And("o JSON do sensor deve obedecer ao contrato {string}")
     public void sensorSchemaCheck(String schema) {
+        Assertions.assertNotNull(schema, "O nome do schema não pode ser nulo!");
         response.then().assertThat()
                 .body(matchesJsonSchemaInClasspath("schema/" + schema));
     }

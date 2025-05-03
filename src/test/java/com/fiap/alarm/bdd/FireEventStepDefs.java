@@ -13,7 +13,7 @@ public class FireEventStepDefs {
     private Response response;
     private String sensorId;
 
-    @Given("criei um sensor (evento) com location {string}")
+    @Given("criei um sensor $evento$ com location {string}")
     public void crieiSensorEvento(String location) {
         try {
             JSONObject json = new JSONObject();
@@ -79,11 +79,12 @@ public class FireEventStepDefs {
 
     @And("o JSON do evento deve obedecer ao contrato {string}")
     public void eventSchemaCheck(String schema) {
+        Assertions.assertNotNull(schema, "O nome do schema não pode ser nulo!");
         response.then().assertThat()
                 .body(matchesJsonSchemaInClasspath("schema/" + schema));
     }
 
-    @And("o array de resposta do evento deve ser uma lista de eventos")
+    @And("o array de resposta deve ser uma lista de eventos")
     public void isArray() {
         try {
             java.util.List<?> eventos = response.jsonPath().getList("$");
