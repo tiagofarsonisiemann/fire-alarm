@@ -33,13 +33,6 @@ jobs:
         run: |
           mvn clean package -DskipTests
 
-      - name: Start App in background
-        env:
-          SPRING_DATA_MONGODB_URI: mongodb://localhost:27017/fire-alarm-app
-        run: |
-          nohup java -jar target/fire-alarm-app.jar > app.log 2>&1 &
-          sleep 15
-
       - name: Run BDD automated API tests
         env:
           SPRING_DATA_MONGODB_URI: mongodb://localhost:27017/fire-alarm-app
