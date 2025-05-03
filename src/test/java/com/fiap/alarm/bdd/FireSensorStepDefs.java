@@ -43,7 +43,7 @@ public class FireSensorStepDefs {
         postSensor(location);
     }
 
-    @When("envio uma requisição GET para /fire/sensors/criado")
+    @When("envio uma requisição GET para \\/fire\\/sensors\\/criado")
     public void getSensorBySavedId() {
         response = RestAssured.get("http://localhost:8081/fire/sensors/" + sensorId);
     }
