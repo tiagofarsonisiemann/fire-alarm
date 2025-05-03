@@ -10,9 +10,48 @@ on:
   workflow_dispatch:
 
 jobs:
+  test:
+    runs-on: ubuntu-latest
+    services:
+      mongo:
+        image: mongo:4.4
+        ports:
+          - 27017:27017
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Set up JDK 21
+        uses: actions/setup-java@v4
+        with:
+          distribution: 'temurin'
+          java-version: '21'
+
+      - name: Build app JAR
+        env:
+          SPRING_DATA_MONGODB_URI: mongodb://localhost:27017/fire-alarm-app
+        run: |
+          mvn clean package -DskipTests
+
+      - name: Start App in background
+        env:
+          SPRING_DATA_MONGODB_URI: mongodb://localhost:27017/fire-alarm-app
+        run: |
+          nohup java -jar target/fire-alarm-app.jar > app.log 2>&1 &
+          sleep 15
+
+      - name: Run BDD automated API tests
+        env:
+          SPRING_DATA_MONGODB_URI: mongodb://localhost:27017/fire-alarm-app
+        run: mvn test
+
+      - name: Check App log if tests fail
+        if: failure()
+        run: cat app.log || echo "No app.log"
+
   build:
     runs-on: ubuntu-latest
-
+    needs: test    # Só roda SE o job de teste foi OK
     steps:
       - name: Checkout code
         uses: actions/checkout@v3
@@ -25,19 +64,7 @@ jobs:
 
       - name: Build with Maven
         run: |
-          if [ -f ./mvnw ]; then
-            ./mvnw clean package -DskipTests
-          else
-            mvn clean package -DskipTests
-          fi
-
-      - name: List target folder
-        run: ls -lh target || echo "target folder not found"
-
-      - name: Show Maven build logs (in case of error)
-        if: failure()
-        run: |
-          cat $(find . -name build.log || echo "No build.log")
+          mvn clean package -DskipTests
 
       - name: Set up Docker Buildx
         uses: docker/setup-buildx-action@v3
@@ -60,12 +87,10 @@ jobs:
 
   deploy:
     runs-on: ubuntu-latest
-    needs: build
-
+    needs: build    # Só roda SE o build foi OK
     steps:
       - name: Deploy to Azure Web App
         uses: azure/webapps-deploy@v3
         with:
           app-name: 'fire-alarm-app'
           publish-profile: ${{ secrets.AzureAppService_PublishProfile_413cd7f3f97b400cb27a8fd88d6b7701 }}
-          images: '${{ secrets.DOCKERHUB_USERNAME }}/fire-alarm-app:${{ github.sha }}'
