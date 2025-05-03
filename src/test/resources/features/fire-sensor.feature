@@ -4,7 +4,7 @@ Feature: Gerenciamento de Sensores
     When envio uma requisição POST em /fire/sensors com location "Sala 505"
     Then o status da resposta do sensor deve ser 200
     And o JSON de sensor deve conter "location" igual a "Sala 505"
-    And o JSON do sensor deve obedecer ao contrato "sensor-schema.json"
+    And o JSON do sensor deve obedecer ao contrato "fire-sensor-schema.json"
 
   Scenario: Buscar sensor cadastrado
     Given criei um sensor com location "Hall Entrada"

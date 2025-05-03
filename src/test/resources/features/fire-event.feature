@@ -5,7 +5,7 @@ Feature: Gerenciamento de Eventos de Incêndio
     When envio um evento de incêndio para esse sensor com description "Fumaça detectada"
     Then o status da resposta do evento deve ser 200
     And o JSON de evento deve conter "status" igual a "ALERT"
-    And o JSON do evento deve obedecer ao contrato "event-schema.json"
+    And o JSON do evento deve obedecer ao contrato "fire-event-schema.json"
 
   Scenario: Listar todos os eventos
     When envio uma requisição GET para /fire/events
