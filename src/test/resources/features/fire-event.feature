@@ -10,7 +10,7 @@ Feature: Gerenciamento de Eventos de Incêndio
   Scenario: Listar todos os eventos
     When envio uma requisição GET para /fire/events
     Then o status da resposta do evento deve ser 200
-    And o array de resposta deve ser uma lista de eventos
+    And o array de resposta do evento deve ser uma lista de eventos
 
   Scenario: Tentar criar evento para sensor inexistente
     When envio um evento de incêndio para sensor com id "FAKE-ID" e description "Teste"

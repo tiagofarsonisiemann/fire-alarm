@@ -83,7 +83,7 @@ public class FireEventStepDefs {
                 .body(matchesJsonSchemaInClasspath("schema/" + schema));
     }
 
-    @And("o array de resposta deve ser uma lista de eventos")
+    @And("o array de resposta do evento deve ser uma lista de eventos")
     public void isArray() {
         try {
             java.util.List<?> eventos = response.jsonPath().getList("$");
