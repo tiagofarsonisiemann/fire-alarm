@@ -43,9 +43,9 @@ public class FireSensorStepDefs {
         postSensor(location);
     }
 
-    @When("envio uma requisição GET para \\/fire\\/sensors\\/\\{string}")
-    public void getSensorPorId(String id) {
-        response = RestAssured.get("http://localhost:8081/fire/sensors/" + id);
+    @When("envio uma requisição GET para /fire/sensors/criado")
+    public void getSensorBySavedId() {
+        response = RestAssured.get("http://localhost:8081/fire/sensors/" + sensorId);
     }
 
     @When("envio uma requisição GET para \\/fire\\/sensors\\/FAKE-ID")
