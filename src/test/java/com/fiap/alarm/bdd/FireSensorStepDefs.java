@@ -12,7 +12,7 @@ public class FireSensorStepDefs {
     private Response response;
     private String sensorId;
 
-    @When("envio uma requisição POST em /fire/sensors com location {string}")
+    @When("envio uma requisição POST em \\/fire\\/sensors com location {string}")
     public void postSensor(String location) {
         try {
             JSONObject json = new JSONObject();
@@ -43,12 +43,12 @@ public class FireSensorStepDefs {
         postSensor(location);
     }
 
-    @When("envio uma requisição GET para /fire/sensors/{id} desse sensor")
+    @When("envio uma requisição GET para \\/fire\\/sensors\\/{id} desse sensor")
     public void getSensorPorId() {
         response = RestAssured.get("http://localhost:8081/fire/sensors/" + sensorId);
     }
 
-    @When("envio uma requisição GET para /fire/sensors/FAKE-ID")
+    @When("envio uma requisição GET para \\/fire\\/sensors\\/FAKE-ID")
     public void getSensorFake() {
         response = RestAssured.get("http://localhost:8081/fire/sensors/FAKE-ID");
     }
