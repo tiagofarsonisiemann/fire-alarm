@@ -14,4 +14,4 @@ Feature: Gerenciamento de Eventos de Incêndio
 
   Scenario: Tentar criar evento para sensor inexistente
     When envio um evento de incêndio para sensor com id "FAKE-ID" e description "Teste"
-    Then o status da resposta do evento deve ser 200  # ou 500 se a API retornar 500
+    Then o status da resposta do evento deve ser 200
