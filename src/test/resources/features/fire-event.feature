@@ -1,7 +1,7 @@
 Feature: Gerenciamento de Eventos de Incêndio
 
   Scenario: Criar evento de incêndio para um sensor ativo
-    Given criei um sensor com location "Sala TI"
+    Given criei um sensor (evento) com location "Sala TI"
     When envio um evento de incêndio para esse sensor com description "Fumaça detectada"
     Then o status da resposta do evento deve ser 200
     And o JSON de evento deve conter "status" igual a "ALERT"

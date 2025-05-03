@@ -38,8 +38,8 @@ public class FireSensorStepDefs {
         }
     }
 
-    @Given("criei um sensor com location {string}")
-    public void crieiSensor(String location) {
+    @Given("criei um sensor (sensor) com location {string}")
+    public void crieiSensorSensor(String location) {
         postSensor(location);
     }
 

@@ -7,7 +7,7 @@ Feature: Gerenciamento de Sensores
     And o JSON do sensor deve obedecer ao contrato "sensor-schema.json"
 
   Scenario: Buscar sensor cadastrado
-    Given criei um sensor com location "Hall Entrada"
+    Given criei um sensor (sensor) com location "Hall Entrada"
     When envio uma requisição GET para /fire/sensors/{string} desse sensor
     Then o status da resposta do sensor deve ser 200
     And o JSON de sensor deve conter "location" igual a "Hall Entrada"

@@ -13,8 +13,8 @@ public class FireEventStepDefs {
     private Response response;
     private String sensorId;
 
-    @Given("criei um sensor com location {string}")
-    public void crieiSensor(String location) {
+    @Given("criei um sensor (evento) com location {string}")
+    public void crieiSensorEvento(String location) {
         try {
             JSONObject json = new JSONObject();
             json.put("location", location);
