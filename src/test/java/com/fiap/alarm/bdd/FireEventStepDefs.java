@@ -13,7 +13,7 @@ public class FireEventStepDefs {
     private Response response;
     private String sensorId;
 
-    @Given("criei um sensor $evento$ com location {string}")
+    @Given("criei um evento com location {string}")
     public void crieiSensorEvento(String location) {
         try {
             JSONObject json = new JSONObject();
@@ -44,7 +44,7 @@ public class FireEventStepDefs {
         }
     }
 
-    @When("envio uma requisição GET para \\/fire\\/events")
+    @When("envio uma requisição GET para /fire/events")
     public void listEvents() {
         response = RestAssured.get("http://localhost:8081/fire/events");
     }
