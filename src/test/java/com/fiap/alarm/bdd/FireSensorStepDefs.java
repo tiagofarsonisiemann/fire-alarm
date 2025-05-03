@@ -1,6 +1,6 @@
 package com.fiap.alarm.bdd;
 
-import io.cucumber.java.en.*; // Importa Given, When, Then, And, etc.
+import io.cucumber.java.en.*;
 import io.restassured.RestAssured;
 import io.restassured.response.Response;
 import org.json.JSONException;
@@ -43,9 +43,9 @@ public class FireSensorStepDefs {
         postSensor(location);
     }
 
-    @When("envio uma requisição GET para \\/fire\\/sensors\\/{id} desse sensor")
-    public void getSensorPorId() {
-        response = RestAssured.get("http://localhost:8081/fire/sensors/" + sensorId);
+    @When("envio uma requisição GET para \\/fire\\/sensors\\/{string} desse sensor")
+    public void getSensorPorId(String id) {
+        response = RestAssured.get("http://localhost:8081/fire/sensors/" + id);
     }
 
     @When("envio uma requisição GET para \\/fire\\/sensors\\/FAKE-ID")

@@ -8,7 +8,7 @@ Feature: Gerenciamento de Sensores
 
   Scenario: Buscar sensor cadastrado
     Given criei um sensor com location "Hall Entrada"
-    When envio uma requisição GET para /fire/sensors/{id} desse sensor
+    When envio uma requisição GET para /fire/sensors/{string} desse sensor
     Then o status da resposta deve ser 200
     And o JSON da resposta deve conter "location" igual a "Hall Entrada"
     And o JSON da resposta deve obedecer ao contrato "sensor-schema.json"
