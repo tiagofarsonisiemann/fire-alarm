@@ -53,14 +53,14 @@ public class FireSensorStepDefs {
         response = RestAssured.get("http://localhost:8081/fire/sensors/FAKE-ID");
     }
 
-    @Then("o status da resposta deve ser {int}")
-    public void statusDeveSer(int status) {
+    @Then("o status da resposta do sensor deve ser {int}")
+    public void statusSensorDeveSer(int status) {
         Assertions.assertEquals(status, response.getStatusCode(),
                 "Status HTTP inesperado. Body: " + response.asString());
     }
 
-    @And("o JSON da resposta deve conter {string} igual a {string}")
-    public void contains(String campo, String valor) {
+    @And("o JSON de sensor deve conter {string} igual a {string}")
+    public void sensorContains(String campo, String valor) {
         try {
             String actual = response.jsonPath().getString(campo);
             Assertions.assertEquals(valor, actual,
@@ -71,8 +71,8 @@ public class FireSensorStepDefs {
         }
     }
 
-    @And("o JSON da resposta deve obedecer ao contrato {string}")
-    public void schemaCheck(String schema) {
+    @And("o JSON do sensor deve obedecer ao contrato {string}")
+    public void sensorSchemaCheck(String schema) {
         response.then().assertThat()
                 .body(matchesJsonSchemaInClasspath("schema/" + schema));
     }

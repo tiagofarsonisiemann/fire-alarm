@@ -62,13 +62,13 @@ public class FireEventStepDefs {
         }
     }
 
-    @Then("o status da resposta deve ser {int}")
-    public void statusDeveSer(int status) {
+    @Then("o status da resposta do evento deve ser {int}")
+    public void statusEventoDeveSer(int status) {
         Assertions.assertEquals(status, response.getStatusCode(), "Status HTTP inesperado. Body: " + response.asString());
     }
 
-    @And("o JSON da resposta deve conter {string} igual a {string}")
-    public void contains(String campo, String valor) {
+    @And("o JSON de evento deve conter {string} igual a {string}")
+    public void eventContains(String campo, String valor) {
         try {
             String actual = response.jsonPath().getString(campo);
             Assertions.assertEquals(valor, actual, "O campo retornado não corresponde ao esperado. Body: " + response.asString());
@@ -77,8 +77,8 @@ public class FireEventStepDefs {
         }
     }
 
-    @And("o JSON da resposta deve obedecer ao contrato {string}")
-    public void schemaCheck(String schema) {
+    @And("o JSON do evento deve obedecer ao contrato {string}")
+    public void eventSchemaCheck(String schema) {
         response.then().assertThat()
                 .body(matchesJsonSchemaInClasspath("schema/" + schema));
     }
