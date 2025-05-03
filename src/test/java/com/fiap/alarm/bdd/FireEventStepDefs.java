@@ -44,7 +44,7 @@ public class FireEventStepDefs {
         }
     }
 
-    @When("envio uma requisição GET para /fire/events")
+    @When("envio uma requisição GET para \\/fire\\/events")
     public void listEvents() {
         response = RestAssured.get("http://localhost:8081/fire/events");
     }
