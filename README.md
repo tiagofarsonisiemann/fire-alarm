@@ -85,14 +85,18 @@ Pré-requisitos:
 - DOCKERHUB_TOKEN: seu token de acesso Docker Hub (precisá já ter gerado anteriormente na sua conta Docker Hub).
 - AZUREAPPSERVICE_PUBLISHPROFILE: no seu app na Azure > vá "download publish profile" > copie, cole e salve o codigo do seu publish profile.
 
-10. Testar a automação dos testes e CI/CD
+10. Testar a automação dos testes e fluxo CI/CD
 
 - Faça alguma alteração simples em algum arquivo do codigo.
 - No terminal, dê os seguintes comandos.
 - git add .
 - git commit -m "sua mensagem"
 - git push origin main
+- Quando o Github receber o push na branch main, irá startar os testes automatizados, compilar o arquivo JAR, criar a imagem, upar no Docker Hub, fazer o deploy/atualização da aplicação na Azure, tudo de forme integrada e automática.
 
 11. Teste os métodos da aplicação com SwaggerUI
 
-- 
+- Na azure, no seu app fire-alarm-app > copie o seu Default Domain (nome do domínio).
+- Cole no navegador e adicione no final /swagger-ui.html
+- Ficará assim: https://SEU_DEFAULT_DOMAIN/swagger-ui/index.html
+- Teste os métodos e persistência no banco com as requisições POST, GET, PUT, DELETE.
