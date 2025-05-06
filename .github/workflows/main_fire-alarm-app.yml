@@ -87,5 +87,5 @@ jobs:
         uses: azure/webapps-deploy@v3
         with:
           app-name: 'fire-alarm-app'
-          publish-profile: ${{ secrets.AzureAppService_PublishProfile_413cd7f3f97b400cb27a8fd88d6b7701 }}
+          publish-profile: ${{ secrets.AzureAppService_PublishProfile }}
           images: '${{ secrets.DOCKERHUB_USERNAME }}/fire-alarm-app:${{ github.sha }}'
