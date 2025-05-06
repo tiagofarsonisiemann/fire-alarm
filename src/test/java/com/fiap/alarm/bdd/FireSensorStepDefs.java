@@ -12,7 +12,7 @@ public class FireSensorStepDefs {
     private Response response;
     private String sensorId;
 
-    @When("envio uma requisição POST em \\  /fire\\/sensors com location {string}")
+    @When("envio uma requisição POST em \\/fire\\/sensors com location {string}")
     public void postSensor(String location) {
         try {
             JSONObject json = new JSONObject();
