@@ -90,4 +90,9 @@ Pré-requisitos:
 - Faça alguma alteração simples em algum arquivo do codigo.
 - No terminal, dê os seguintes comandos.
 - git add .
-- git 
+- git commit -m "sua mensagem"
+- git push origin main
+
+11. Teste os métodos da aplicação com SwaggerUI
+
+- 
